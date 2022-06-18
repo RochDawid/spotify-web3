@@ -20,7 +20,7 @@ const styles = {
   controlIconsContainer: `flex items-center justify-center mb-2`,
 };
 
-const PlayerControls = () => {
+const PlayerControls = ({songs}) => {
   const {
     currentSong,
     isPaused,
@@ -34,6 +34,7 @@ const PlayerControls = () => {
     onProgressChange,
     playNext,
     playPrevious,
+    secondsToMin
   } = useContext(SpotifyContext);
 
   if (!isPlaying) return null;
@@ -43,7 +44,10 @@ const PlayerControls = () => {
       <div className={styles.flexCenter}>
         <div className={styles.albumCoverContainer}>
           <Image
-            src={currentSong.cover}
+            src={
+              currentSong.cover ||
+              "https://latinomp3.co/wp-content/uploads/2022/05/Bad-Bunny-Un-Verano-Sin-Ti-2022-300x300-1-300x300.jpg?v=1651765689"
+            }
             className={styles.coverPhoto}
             height={200}
             width={200}
@@ -91,7 +95,7 @@ const PlayerControls = () => {
             onChange={(e) => onProgressChange(e)}
             type="range"
           />
-          <small>{currentSong.songLength}</small>
+          <small>{document.querySelector("#audio-element").duration && secondsToMin(document.querySelector("#audio-element").duration) || ""}</small>
         </div>
       </div>
 
