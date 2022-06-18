@@ -12,7 +12,9 @@ const nextConfig = {
       "m.media-amazon.com",
       "upload.wikimedia.org",
       "www.highsnobiety.com",
-      "kajabi-storefronts-production.kajabi-cdn.com"
+      "kajabi-storefronts-production.kajabi-cdn.com",
+      "latinomp3.co",
+      "yt3.ggpht.com"
     ],
   },
 };
