@@ -22,9 +22,9 @@ const styles = {
   title: "text-6xl font-bold",
 };
 
-const Header = ({ setShowUploadMusic }) => {
+const Header = ({ setShowUploadMusic, firstSong }) => {
   const wallet = useWallet();
-  const { currentSong } = useContext(SpotifyContext);
+  const { currentSong, playOnSelect } = useContext(SpotifyContext);
 
   return (
     <div className={styles.header}>
@@ -65,20 +65,20 @@ const Header = ({ setShowUploadMusic }) => {
       </div>
       <div className={styles.playlistTextContent}>
         <Image
-          src="https://m.media-amazon.com/images/I/41unr4d1AkL._AC_SX466_.jpg"
+          src="https://latinomp3.co/wp-content/uploads/2022/05/Bad-Bunny-Un-Verano-Sin-Ti-2022-300x300-1-300x300.jpg?v=1651765689"
           width={220}
           height={220}
-          alt="album"
+          alt="song"
         />
         <div className="flex-col h-2 justify-between ml-5">
           <div>
-            <>Album</>
-            <div className={styles.title}>{currentSong.album}</div>
+            <>Song</>
+            <div className={styles.title}>{currentSong.title || "No song is playing currently"}</div>
           </div>
           <div className="flex items-center mt-5">
             <div className={styles.profileAvatarContainer}>
               <Image
-                src="https://www.highsnobiety.com/static-assets/thumbor/se6-ryo4pqA2AlEPe0bNoJL9fPw=/1600x1067/www.highsnobiety.com/static-assets/wp-content/uploads/2019/12/19154009/album-of-the-year-main.jpg"
+                src="https://yt3.ggpht.com/7tCfeCWH4arhsTM-4Rz4IxWieQbegzibeXlG-kbytAujdk5dr2K0gBb8NG0Cvk6lB1dPkjyd=s88-c-k-c0x00ffffff-no-rj"
                 width={25}
                 height={25}
                 alt="artist"
@@ -86,14 +86,13 @@ const Header = ({ setShowUploadMusic }) => {
               />
             </div>
             <p>
-              <span className="text-bold">{currentSong.artist}</span> • 2022 • 46 songs, 3 hr 20
-              min
+              <span className="text-bold">{currentSong.artist}</span> • 2022 • 46 songs, 3 hr 20 min
             </p>
           </div>
         </div>
       </div>
       <div className={styles.controlsContainer}>
-        <div className={styles.playButton}>
+        <div onClick={() => playOnSelect(firstSong.account)} className={styles.playButton}>
           <Image src="/assets/play.svg" width={30} height={30} alt="play" />
         </div>
         <div className={styles.iconContainer}>
