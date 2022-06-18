@@ -2,7 +2,7 @@ export const songs = [
   {
     index: 1,
     title: 'Path Less Traveled',
-    artiste: 'Lo-Fi',
+    artist: 'Lo-Fi',
     plays: '20,382',
     songLength: '2:43',
     album: 'Songs & Beats',
@@ -13,7 +13,7 @@ export const songs = [
   {
     index: 2,
     title: 'Radiant Vibes',
-    artiste: 'SteamBeats originals',
+    artist: 'SteamBeats originals',
     plays: '1,324',
     songLength: '4:50',
     album: 'The Random House',
