@@ -9,6 +9,10 @@ const nextConfig = {
       "i.scdn.co",
       "resources.tidal.com",
       "encrypted-tbn1.gstatic.com",
+      "m.media-amazon.com",
+      "upload.wikimedia.org",
+      "www.highsnobiety.com",
+      "kajabi-storefronts-production.kajabi-cdn.com"
     ],
   },
 };
