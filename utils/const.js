@@ -5,6 +5,6 @@ export const SOLANA_HOST =
   "https://muddy-shy-dawn.solana-devnet.quiknode.pro/5b638e723dd3df716748cb5432458a2e21e53e05/";
 
 export const STABLE_POOL_PROGRAM_ID = new PublicKey(
-  "Cb5Fiou3UfNRMHJd5ry5CUAQeSGJNJaZUPwN5hM3ebUM"
+  "HHakkuGWoxFUCe4KrbakEwkKNghWb9itQpqqE5ZGHCqc"
 );
 export const STABLE_POOL_IDL = spotifyWeb3;
