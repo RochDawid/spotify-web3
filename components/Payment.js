@@ -4,6 +4,7 @@ import { TOKEN_PROGRAM_ID } from "@solana/spl-token";
 import { SOLANA_HOST } from "../utils/const";
 import { useWallet } from "@solana/wallet-adapter-react";
 import { PublicKey } from "@solana/web3.js";
+import HomePage from '../pages/homepage';
 
 const anchor = require("@project-serum/anchor");
 const utf8 = anchor.utils.bytes.utf8;
@@ -27,12 +28,24 @@ const Payment = () => {
   const [payers, setPayers] = useState([]);
   const [isPaid, setPaid] = useState(false);
 
+  useEffect(() => {
+    if (wallet.connected) getAllWallets();
+  }, [wallet.connected, isPaid]);
+
+  const getAllWallets = async () => {
+    const payerList = await program.account.payerAccount.all();
+    setPayers(payerList);
+
+    payerList.forEach(payer => {
+      if (payer.account.wallet.toBase58() === wallet.publicKey.toBase58()) setPaid(true);
+    })
+  }
+
   const payClicked = async () => {
     let [payerSigner] = await anchor.web3.PublicKey.findProgramAddress(
-      [utf8.encode("payer"), wallet.publicKey.toBuffer()],
+      [utf8.encode('payer'), wallet.publicKey.toBuffer()],
       program.programId
     );
-    let payerInfo;
 
     try {
       payerInfo = await program.account.payerAccount.fetch(payerSigner);
@@ -48,12 +61,13 @@ const Payment = () => {
             ...defaultAccounts,
           },
         });
-        alert("Transaction succeded");
       } catch (e) {
         console.error(e.message);
       }
     }
   };
+
+  if (isPaid) return <HomePage />;
 
   return (
     <div className={styles.main}>
@@ -64,7 +78,7 @@ const Payment = () => {
         <button onClick={payClicked} className={styles.button}>
           Pay 0.1 SOL
         </button>
-        <button className={styles.button}>Verify Payment</button>
+        <button onClick={getAllWallets} className={styles.button}>Verify Payment</button>
       </div>
     </div>
   );
