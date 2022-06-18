@@ -37,7 +37,7 @@ export const SpotifyProvider = ({ children }) => {
 
   const playOnSelect = (song) => {
     try {
-      document.querySelector("#audio-element").src = song.link;
+      document.querySelector("#audio-element").src = song.musicUrl;
       document.querySelector("#audio-element").play();
       setCurrentSong(song);
       setIsPaused(false);
@@ -78,25 +78,29 @@ export const SpotifyProvider = ({ children }) => {
   };
 
   const playNext = (songs) => {
-    const id = songs.findIndex((song) => song.index === currentSong.index);
-    if (songs.length - 1 === id) {
-      playOnSelect(songs[0]);
-      setCurrentSong(songs[0]);
+    const id = songs.findIndex(
+      (song) => song.account.title === currentSong.title
+    );
+    if (id === songs.length - 1) {
+      setCurrentSong(songs[0].account);
+      playOnSelect(songs[0].account);
       return;
     }
-    const nextSong = songs[id + 1];
+    const nextSong = songs[id + 1].account;
     setCurrentSong(nextSong);
     playOnSelect(nextSong);
   };
 
   const playPrevious = (songs) => {
-    const id = songs.findIndex((song) => song.index === currentSong.index);
+    const id = songs.findIndex(
+      (song) => song.account.title === currentSong.title
+    );
     if (id === 0) {
-      playOnSelect(songs[songs.length - 1]);
-      setCurrentSong(songs[songs.length - 1]);
+      setCurrentSong(songs[songs.length - 1].account);
+      playOnSelect(songs[songs.length - 1].account);
       return;
     }
-    const previousSong = songs[id - 1];
+    const previousSong = songs[id - 1].account;
     setCurrentSong(previousSong);
     playOnSelect(previousSong);
   };
@@ -122,6 +126,7 @@ export const SpotifyProvider = ({ children }) => {
         updateVolume,
         volume,
         onVolumeChange,
+        secondsToMin,
       }}
     >
       {children}

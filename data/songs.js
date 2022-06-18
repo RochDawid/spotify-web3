@@ -3,8 +3,6 @@ export const songs = [
     index: 1,
     title: 'Path Less Traveled',
     artist: 'Lo-Fi',
-    plays: '20,382',
-    songLength: '2:43',
     album: 'Songs & Beats',
     cover:
       'https://kajabi-storefronts-production.kajabi-cdn.com/kajabi-storefronts-production/themes/284832/settings_images/rLlCifhXRJiT0RoN2FjK_Logo_roundbackground_black.png',
@@ -14,8 +12,6 @@ export const songs = [
     index: 2,
     title: 'Radiant Vibes',
     artist: 'SteamBeats originals',
-    plays: '1,324',
-    songLength: '4:50',
     album: 'The Random House',
     cover:
       'https://upload.wikimedia.org/wikipedia/commons/3/3b/Javascript_Logo.png',

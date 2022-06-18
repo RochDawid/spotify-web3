@@ -5,21 +5,20 @@ const styles = {
   th: `pb-5 hover:opacity-50 cursor-pointer`,
 };
 
-const TableRow = ({ song }) => {
-  const { playOnSelect } = useContext(SpotifyContext);
+const TableRow = ({ song, index }) => {
+  const { playOnSelect, secondsToMin } = useContext(SpotifyContext);
 
   return (
     <tbody>
       <tr onClick={() => playOnSelect(song)}>
-        <th className={styles.th}>{song.index}</th>
+        <th className={styles.th}>{index}</th>
         <th className={styles.th}>
           <div>
             <p className="font-bold">{song.title}</p>
-            <p className="opacity-50">{song.artist}</p>
+            <p className="opacity-50">{song.artist || "Artist"}</p>
           </div>
         </th>
-        <th className={styles.th}>{song.plays}</th>
-        <th className={styles.th}>{song.songLength}</th>
+        <th className={styles.th}>{"I'm working on it :("}</th>
       </tr>
     </tbody>
   );
