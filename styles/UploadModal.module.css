@@ -2,13 +2,13 @@
   position: absolute;
   left: 50%;
   top: 50%;
-  transform: translate(-15%, -50%);
+  transform: translate(-50%, -55%);
   z-index: 10;
-  background-color: black;
+  background-color: #0f172a;
   min-width: 20rem;
   min-height: 20rem;
   border-radius: 10px;
-  padding: 1.2rem;
+  padding: 2rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -75,10 +75,14 @@
 }
 
 .createButton {
-  background-color: #4e44ce;
+  background-color: #22c55e;
 }
 
 .cancelButton {
   border: 2px #fe2d55 solid;
   color: #fe2d55;
+}
+
+.cancelButton:hover {
+  background-color: #1e293b;
 }

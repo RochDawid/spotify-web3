@@ -7,7 +7,7 @@ export default function Home() {
   const { updateProgress, updateVolume } = useContext(SpotifyContext);
 
   return (
-    <div>
+    <div className="min-h-screen w-full">
       <Head>
         <title>Spotify Web 3.0</title>
         <link rel="icon" href="/assets/favicon.png" />

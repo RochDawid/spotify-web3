@@ -8,17 +8,16 @@ import playRounded from "../public/assets/playRounded.svg";
 import pauseIcon from "../public/assets/pause.svg";
 
 const styles = {
-  albumCoverContainer: `w-20 h-20 mr-5 m:mb-2`,
+  albumCoverContainer: `w-20 h-20 ml-10 mr-5 m:mb-2 m:ml-0`,
   coverPhoto: `object-cover`,
-  mainControl: `flex items-center justify-around sticky bottom-0 py-5 w-screen bg-[#242424] z-40 m:flex-col gap-2`,
-  centerContainer: `flex items-center m:max-w-m sm:max-w-sm`,
-  volumeContainer: `flex items-center max-w-8 m:mt-2`,
+  mainControl: `flex items-center justify-between sticky bottom-0 w-full p-5 bg-[#242424] z-40 m:flex-col m:gap-2`,
+  centerContainer: `flex items-center m:max-w-m sm:max-w-xs`,
+  volumeContainer: `flex items-center mr-10 m:mt-2 m:mr-0`,
   progressBar: `w-96`,
-  volumeBar: ``,
-  controlIcon: `mr-5 cursor-pointer hover:opacity-100 opacity-50 m:mb-2`,
-  playIcon: `mr-5 mb-3 w-10 h-10 cursor-pointer hover:opacity-50 m:mb-2`,
-  pauseIconStyle: `mt-3 w-10 h-10 cursor-pointer hover:opacity-50 m:mb-2`,
-  controlIconsContainer: `flex items-center justify-center`,
+  controlIcon: `flex items-center justify-center cursor-pointer w-10 h-10 hover:opacity-100 opacity-50 m:mb-2`,
+  playIcon: `flex items-center justify-center cursor-pointer w-10 h-10 hover:opacity-50 m:mb-2`,
+  pauseIconStyle: `flex items-center justify-center cursor-pointer w-10 h-10 hover:opacity-50 m:mb-2`,
+  controlIconsContainer: `flex items-center justify-center gap-2`,
 };
 
 const PlayerControls = ({ songs }) => {
@@ -60,7 +59,7 @@ const PlayerControls = ({ songs }) => {
           <p className="opacity-50">{currentSong.artist}</p>
         </div>
       </div>
-      <div>
+      <div className="flex flex-col items-center gap-2">
         <div className={styles.controlIconsContainer}>
           <div
             onClick={(e) => playPrevious(songs)}
@@ -104,7 +103,6 @@ const PlayerControls = ({ songs }) => {
         <Image src={speaker} alt="volume" />
         <input
           value={volume}
-          className={styles.volumeBar}
           onChange={(e) => onVolumeChange(e)}
           type="range"
           id="volume-range"

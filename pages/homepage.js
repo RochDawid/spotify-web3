@@ -33,7 +33,7 @@ const HomePage = () => {
   }, []);
 
   return (
-    <div className="flex-col">
+    <div className="flex flex-col h-full">
       <div className="flex w-full">
         <div className="w-full m-5">
           <Header

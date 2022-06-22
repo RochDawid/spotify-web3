@@ -8,17 +8,17 @@ import Avatar from "../public/assets/avatar.png";
 import Play from "../public/assets/play.svg";
 
 const styles = {
-  header: "max-w-7xl m-auto p-3",
+  header: "flex flex-col gap-10 max-w-7xl m-auto p-3 sm:gap-5",
   headerWrapper: "flex justify-end",
   headerRight: "flex",
   profile:
-    "flex items-center bg-black rounded-full p-1 px-2 bg-opacity-50 cursor-pointer hover:bg-opacity-75 hover:scale-95 transition",
-  profileAvatarContainer: "w-7 h-7 rounded-full mr-3 flex items-center",
-  playlistTextContent: "flex mt-10 m:flex-col m:items-center",
-  controlsContainer: "flex items-center mt-10 m:mt-5 sm:mt-2",
+    "flex items-center gap-2 bg-black rounded-full p-1 px-2 bg-opacity-50 cursor-pointer hover:bg-opacity-75 hover:scale-95 transition",
+  profileAvatarContainer: "w-7 h-7 rounded-full flex items-center",
+  playlistTextContent: "flex m:flex-col m:items-center sm:mt-5",
+  controlsContainer: "flex items-center",
   playButton:
     "bg-green-500 w-16 h-16 mr-2 rounded-full flex pl-2 items-center justify-center cursor-pointer hover:scale-95 transition",
-  title: "text-6xl font-bold",
+  title: "text-6xl font-bold m:text-center",
 };
 
 const Header = ({ setShowUploadMusic, firstSong }) => {
@@ -56,35 +56,37 @@ const Header = ({ setShowUploadMusic, firstSong }) => {
           </div>
         </div>
       </div>
-      <div className={styles.playlistTextContent}>
-        <img
-          src={currentSong.coverUrl || "/assets/album.png"}
-          width={220}
-          height={220}
-          alt="song"
-        />
-        <div className="flex-col h-32 justify-between ml-5 m:ml-0 m:mt-5 m:items-center">
-          <div className={styles.title}>
-            {currentSong.title || "No song is playing currently"}
-          </div>
-          <div className="flex items-center mt-5 m:justify-center m:mt-3">
-            <div className={styles.profileAvatarContainer}>
-              <img
-                src={currentSong.artistPhotoUrl || "/assets/artist.png"}
-                width={100}
-                height={100}
-                alt="artist"
-                className="rounded-full"
-              />
+      {currentSong.coverUrl ? (
+        <div className={styles.playlistTextContent}>
+          <img
+            src={currentSong.coverUrl}
+            width={220}
+            height={220}
+            alt="song"
+          />
+          <div className="flex flex-col min-h-32 gap-10 justify-between ml-5 mb-5 m:ml-0 m:mt-5 m:items-center sm:gap-5">
+            <div className={styles.title}>
+              {currentSong.title}
             </div>
-            <p>
-              <span className="text-bold mt-10">
-                {currentSong.artist || "No one"}
-              </span>
-            </p>
+            <div className="flex items-center gap-5 m:justify-center">
+              <div className={styles.profileAvatarContainer}>
+                <img
+                  src={currentSong.artistPhotoUrl}
+                  width={100}
+                  height={100}
+                  alt="artist"
+                  className="rounded-full"
+                />
+              </div>
+              <p>
+                <span className="text-bold">
+                  {currentSong.artist}
+                </span>
+              </p>
+            </div>
           </div>
         </div>
-      </div>
+      ) : null}
       <div className={styles.controlsContainer}>
         <div
           onClick={() => playOnSelect(firstSong.account)}
