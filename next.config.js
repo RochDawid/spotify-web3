@@ -6,15 +6,8 @@ const nextConfig = {
   },
   images: {
     domains: [
-      "i.scdn.co",
-      "resources.tidal.com",
-      "encrypted-tbn1.gstatic.com",
-      "m.media-amazon.com",
-      "upload.wikimedia.org",
-      "www.highsnobiety.com",
-      "kajabi-storefronts-production.kajabi-cdn.com",
       "latinomp3.co",
-      "yt3.ggpht.com"
+      "www.buenamusica.com"
     ],
   },
 };

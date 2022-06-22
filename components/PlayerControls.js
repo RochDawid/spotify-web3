@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { SpotifyContext } from "../context/context";
 import Image from "next/image";
 import next from "../public/assets/next.svg";
+import speaker from "../public/assets/speaker.svg";
 import previous from "../public/assets/previous.svg";
 import playRounded from "../public/assets/playRounded.svg";
 import pauseIcon from "../public/assets/pause.svg";
@@ -17,7 +18,7 @@ const styles = {
   controlIconsContainer: `flex items-center justify-center mb-2`,
 };
 
-const PlayerControls = ({songs}) => {
+const PlayerControls = ({ songs }) => {
   const {
     currentSong,
     isPaused,
@@ -31,7 +32,7 @@ const PlayerControls = ({songs}) => {
     onProgressChange,
     playNext,
     playPrevious,
-    secondsToMin
+    secondsToMin,
   } = useContext(SpotifyContext);
 
   if (!isPlaying) return null;
@@ -58,9 +59,6 @@ const PlayerControls = ({songs}) => {
       </div>
       <div>
         <div className={styles.controlIconsContainer}>
-          <div className={styles.controlIcon}>
-            <Image src={shuffle} alt="shuffle" />
-          </div>
           <div
             onClick={(e) => playPrevious(songs)}
             className={styles.controlIcon}
@@ -81,9 +79,6 @@ const PlayerControls = ({songs}) => {
           <div onClick={() => playNext(songs)} className={styles.controlIcon}>
             <Image src={next} alt="" />
           </div>
-          <div className={styles.controlIcon}>
-            <Image src={repeat} alt="repeat" />
-          </div>
         </div>
         <div className={styles.flexCenter}>
           <small>{timestamp}</small>
@@ -92,7 +87,13 @@ const PlayerControls = ({songs}) => {
             onChange={(e) => onProgressChange(e)}
             type="range"
           />
-          <small>{document.querySelector("#audio-element").duration && secondsToMin(document.querySelector("#audio-element").duration) || ""}</small>
+          <small>
+            {(document.querySelector("#audio-element").duration &&
+              secondsToMin(
+                document.querySelector("#audio-element").duration
+              )) ||
+              ""}
+          </small>
         </div>
       </div>
 
