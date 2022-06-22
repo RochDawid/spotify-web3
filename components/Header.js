@@ -14,8 +14,8 @@ const styles = {
   profile:
     "flex items-center bg-black rounded-full p-1 px-2 bg-opacity-50 cursor-pointer hover:bg-opacity-75 hover:scale-95 transition",
   profileAvatarContainer: "w-7 h-7 rounded-full mr-3 flex items-center",
-  playlistTextContent: "flex mt-10",
-  controlsContainer: "flex items-center mt-10",
+  playlistTextContent: "flex mt-10 m:flex-col m:items-center",
+  controlsContainer: "flex items-center mt-10 m:mt-5 sm:mt-2",
   playButton:
     "bg-green-500 w-16 h-16 mr-2 rounded-full flex pl-2 items-center justify-center cursor-pointer hover:scale-95 transition",
   title: "text-6xl font-bold",
@@ -52,7 +52,7 @@ const Header = ({ setShowUploadMusic, firstSong }) => {
                 className="rounded-full"
               />
             </div>
-            <p>{wallet.publicKey.toString().substring(0, 15)}...</p>
+            <p className="w-32 truncate">{wallet.publicKey.toString()}</p>
           </div>
         </div>
       </div>
@@ -63,16 +63,16 @@ const Header = ({ setShowUploadMusic, firstSong }) => {
           height={220}
           alt="song"
         />
-        <div className="flex-col h-full justify-between ml-5">
+        <div className="flex-col h-32 justify-between ml-5 m:ml-0 m:mt-5 m:items-center">
           <div className={styles.title}>
             {currentSong.title || "No song is playing currently"}
           </div>
-          <div className="flex items-center mt-5">
+          <div className="flex items-center mt-5 m:justify-center m:mt-3">
             <div className={styles.profileAvatarContainer}>
               <img
                 src={currentSong.artistPhotoUrl || "/assets/artist.png"}
-                width={25}
-                height={25}
+                width={100}
+                height={100}
                 alt="artist"
                 className="rounded-full"
               />

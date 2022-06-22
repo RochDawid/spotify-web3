@@ -1,4 +1,3 @@
-import Nav from "../components/nav";
 import { useState, useEffect } from "react";
 import Header from "../components/Header";
 import useSpotify from "../hooks/useSpotify";
@@ -14,7 +13,7 @@ const HomePage = () => {
   const [coverUrl, setCoverUrl] = useState("");
   const [musicUrl, setMusicUrl] = useState("");
   const [songs, setSongs] = useState([]);
-  const { newMusic, getSongs } = useSpotify(
+  const [newMusic, getSongs] = useSpotify(
     artist,
     setArtist,
     title,
@@ -34,29 +33,33 @@ const HomePage = () => {
   }, []);
 
   return (
-    <div className="flex">
-      <Nav />
-      <div className="w-full m-5">
-        <Header setShowUploadMusic={setShowUploadMusic} firstSong={songs[0]} />
-        <Playlist songs={songs} />
-        <PlayerControls songs={songs} />
-        {showUploadMusic && (
-          <UploadModal
-            title={title}
-            setTitle={setTitle}
-            artist={artist}
-            setArtist={setArtist}
-            coverUrl={coverUrl}
-            setCoverUrl={setCoverUrl}
-            artistPhotoUrl={artistPhotoUrl}
-            setArtistPhotoUrl={setArtistPhotoUrl}
-            musicUrl={musicUrl}
-            setMusicUrl={setMusicUrl}
-            newMusic={newMusic}
+    <div className="flex-col">
+      <div className="flex w-full">
+        <div className="w-full m-5">
+          <Header
             setShowUploadMusic={setShowUploadMusic}
+            firstSong={songs[0]}
           />
-        )}
+          <Playlist songs={songs} />
+          {showUploadMusic && (
+            <UploadModal
+              title={title}
+              setTitle={setTitle}
+              artist={artist}
+              setArtist={setArtist}
+              coverUrl={coverUrl}
+              setCoverUrl={setCoverUrl}
+              artistPhotoUrl={artistPhotoUrl}
+              setArtistPhotoUrl={setArtistPhotoUrl}
+              musicUrl={musicUrl}
+              setMusicUrl={setMusicUrl}
+              newMusic={newMusic}
+              setShowUploadMusic={setShowUploadMusic}
+            />
+          )}
+        </div>
       </div>
+      <PlayerControls songs={songs} />
     </div>
   );
 };

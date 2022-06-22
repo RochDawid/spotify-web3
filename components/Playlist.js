@@ -2,7 +2,7 @@ import TableRow from "./table/TableRow";
 
 const styles = {
   table: `w-full text-left`,
-  tableWrapper: `max-w-7xl m-auto p-3 mt-5 mb-40`,
+  tableWrapper: `max-w-7xl m-auto p-3 mt-5 mb-40 m:mb-20 sm:mb-10`,
   tableHeader: `border-b border-gray-100/20 pb-5 opacity-50`,
 };
 

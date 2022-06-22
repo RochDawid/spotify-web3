@@ -58,7 +58,7 @@ const useSpotify = (
     setShowUploadMusic(false);
   };
 
-  return { newMusic, getSongs };
+  return [ newMusic, getSongs ];
 };
 
 export default useSpotify;

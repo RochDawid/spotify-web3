@@ -8,14 +8,17 @@ import playRounded from "../public/assets/playRounded.svg";
 import pauseIcon from "../public/assets/pause.svg";
 
 const styles = {
-  albumCoverContainer: `w-20 h-20 mr-5`,
+  albumCoverContainer: `w-20 h-20 mr-5 m:mb-2`,
   coverPhoto: `object-cover`,
-  mainControl: `fixed bottom-0 left-0 p-5 py-3 pr-10 w-screen bg-[#242424] z-40 flex items-center justify-between`,
-  flexCenter: `flex items-center`,
-  controlIcon: `mr-5 cursor-pointer hover:opacity-100 opacity-50`,
-  playIcon: `mr-5 mb-3 w-10 h-10 cursor-pointer hover:opacity-50`,
-  pauseIconStyle: `mt-3 w-10 h-10 cursor-pointer hover:opacity-50`,
-  controlIconsContainer: `flex items-center justify-center mb-2`,
+  mainControl: `flex items-center justify-around sticky bottom-0 py-5 w-screen bg-[#242424] z-40 m:flex-col gap-2`,
+  centerContainer: `flex items-center m:max-w-m sm:max-w-sm`,
+  volumeContainer: `flex items-center max-w-8 m:mt-2`,
+  progressBar: `w-96`,
+  volumeBar: ``,
+  controlIcon: `mr-5 cursor-pointer hover:opacity-100 opacity-50 m:mb-2`,
+  playIcon: `mr-5 mb-3 w-10 h-10 cursor-pointer hover:opacity-50 m:mb-2`,
+  pauseIconStyle: `mt-3 w-10 h-10 cursor-pointer hover:opacity-50 m:mb-2`,
+  controlIconsContainer: `flex items-center justify-center`,
 };
 
 const PlayerControls = ({ songs }) => {
@@ -39,9 +42,9 @@ const PlayerControls = ({ songs }) => {
 
   return (
     <div className={styles.mainControl}>
-      <div className={styles.flexCenter}>
+      <div className="flex items-center">
         <div className={styles.albumCoverContainer}>
-          <Image
+          <img
             src={
               currentSong.coverUrl ||
               "https://latinomp3.co/wp-content/uploads/2022/05/Bad-Bunny-Un-Verano-Sin-Ti-2022-300x300-1-300x300.jpg?v=1651765689"
@@ -80,10 +83,11 @@ const PlayerControls = ({ songs }) => {
             <Image src={next} alt="" />
           </div>
         </div>
-        <div className={styles.flexCenter}>
+        <div className={styles.centerContainer}>
           <small>{timestamp}</small>
           <input
             value={progress}
+            className={styles.progressBar}
             onChange={(e) => onProgressChange(e)}
             type="range"
           />
@@ -96,17 +100,15 @@ const PlayerControls = ({ songs }) => {
           </small>
         </div>
       </div>
-
-      <div>
-        <div className={styles.flexCenter}>
-          <Image src={speaker} alt="volume" />
-          <input
-            value={volume}
-            onChange={(e) => onVolumeChange(e)}
-            type="range"
-            id="volume-range"
-          />
-        </div>
+      <div className={styles.volumeContainer}>
+        <Image src={speaker} alt="volume" />
+        <input
+          value={volume}
+          className={styles.volumeBar}
+          onChange={(e) => onVolumeChange(e)}
+          type="range"
+          id="volume-range"
+        />
       </div>
     </div>
   );

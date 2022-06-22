@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+  box-sizing: border-box;
+}
+
 html,
 body {
   padding: 0;
@@ -16,26 +20,12 @@ a {
   text-decoration: none;
 }
 
-* {
-  box-sizing: border-box;
-}
-
 input[type=range] {
   margin: 0 10px;
   height: 6px;
   border-radius: 100px;
   background: #fff;
   appearance: none;
-  width: 560px;
   outline: none;
   -webkit-appearance: none;
-}
-
-#volume-range {
-  width: 200px;
-}
-
-input[type=range]::webkit-slider-thumb, input[type=range] {
-  background: #22C55E;
-  border: none;
 }
