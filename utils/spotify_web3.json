@@ -27,6 +27,8 @@
       "args": [
         { "name": "title", "type": "string" },
         { "name": "artist", "type": "string" },
+        { "name": "artistPhotoUrl", "type": "string" },
+        { "name": "coverUrl", "type": "string" },
         { "name": "musicUrl", "type": "string" }
       ]
     }
@@ -47,6 +49,8 @@
           { "name": "authority", "type": "publicKey" },
           { "name": "title", "type": "string" },
           { "name": "artist", "type": "string" },
+          { "name": "artistPhotoUrl", "type": "string" },
+          { "name": "coverUrl", "type": "string" },
           { "name": "musicUrl", "type": "string" }
         ]
       }

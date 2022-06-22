@@ -10,6 +10,8 @@ const HomePage = () => {
   const [showUploadMusic, setShowUploadMusic] = useState(false);
   const [title, setTitle] = useState("");
   const [artist, setArtist] = useState("");
+  const [artistPhotoUrl, setArtistPhotoUrl] = useState("");
+  const [coverUrl, setCoverUrl] = useState("");
   const [musicUrl, setMusicUrl] = useState("");
   const [songs, setSongs] = useState([]);
   const { newMusic, getSongs } = useSpotify(
@@ -17,6 +19,10 @@ const HomePage = () => {
     setArtist,
     title,
     musicUrl,
+    coverUrl,
+    setCoverUrl,
+    artistPhotoUrl,
+    setArtistPhotoUrl,
     setTitle,
     setMusicUrl,
     setShowUploadMusic
@@ -40,6 +46,10 @@ const HomePage = () => {
             setTitle={setTitle}
             artist={artist}
             setArtist={setArtist}
+            coverUrl={coverUrl}
+            setCoverUrl={setCoverUrl}
+            artistPhotoUrl={artistPhotoUrl}
+            setArtistPhotoUrl={setArtistPhotoUrl}
             musicUrl={musicUrl}
             setMusicUrl={setMusicUrl}
             newMusic={newMusic}

@@ -6,7 +6,7 @@ const styles = {
 };
 
 const TableRow = ({ song, index }) => {
-  const { playOnSelect, secondsToMin } = useContext(SpotifyContext);
+  const { playOnSelect } = useContext(SpotifyContext);
 
   return (
     <tbody>
@@ -14,11 +14,10 @@ const TableRow = ({ song, index }) => {
         <th className={styles.th}>{index}</th>
         <th className={styles.th}>
           <div>
-            <p className="font-bold">{song.title}</p>
+            <p className="font-bold">{song.title || "Title"}</p>
             <p className="opacity-50">{song.artist || "Artist"}</p>
           </div>
         </th>
-        <th className={styles.th}>{"I'm working on it :("}</th>
       </tr>
     </tbody>
   );

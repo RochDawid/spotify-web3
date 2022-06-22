@@ -1,11 +1,15 @@
 import style from "../styles/UploadModal.module.css";
 
 const UploadModal = ({
-  artist,
-  setArtist,
   title,
-  setTitle,
+  artist,
+  artistPhotoUrl,
+  coverUrl,
   musicUrl,
+  setTitle,
+  setArtist,
+  setArtistPhotoUrl,
+  setCoverUrl,
   setMusicUrl,
   setShowUploadMusic,
   newMusic,
@@ -32,6 +36,28 @@ const UploadModal = ({
             type="text"
             value={artist}
             onChange={(e) => setArtist(e.target.value)}
+          />
+        </div>
+      </div>
+      <div className={style.inputField}>
+        <div className={style.inputTitle}>Artist Photo Url</div>
+        <div className={style.inputContainer}>
+          <input
+            className={style.input}
+            type="text"
+            value={artistPhotoUrl}
+            onChange={(e) => setArtistPhotoUrl(e.target.value)}
+          />
+        </div>
+      </div>
+      <div className={style.inputField}>
+        <div className={style.inputTitle}>Cover Url</div>
+        <div className={style.inputContainer}>
+          <input
+            className={style.input}
+            type="text"
+            value={coverUrl}
+            onChange={(e) => setCoverUrl(e.target.value)}
           />
         </div>
       </div>

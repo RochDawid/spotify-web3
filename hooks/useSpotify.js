@@ -15,6 +15,10 @@ const useSpotify = (
   setArtist,
   title,
   musicUrl,
+  coverUrl,
+  setCoverUrl,
+  artistPhotoUrl,
+  setArtistPhotoUrl,
   setTitle,
   setMusicUrl,
   setShowUploadMusic
@@ -37,7 +41,7 @@ const useSpotify = (
       program.programId
     );
 
-    await program.rpc.createMusic(title, artist, musicUrl, {
+    await program.rpc.createMusic(title, artist, artistPhotoUrl, coverUrl, musicUrl, {
       accounts: {
         music: music_pda,
         randomkey: randomKey,
@@ -49,6 +53,8 @@ const useSpotify = (
     setTitle("");
     setMusicUrl("");
     setArtist("");
+    setArtistPhotoUrl("");
+    setCoverUrl("");
     setShowUploadMusic(false);
   };
 

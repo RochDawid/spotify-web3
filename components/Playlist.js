@@ -14,9 +14,6 @@ const Playlist = ({ songs }) => {
           <tr>
             <th className="pb-3">#</th>
             <th className="pb-3">SONG</th>
-            <th className="pb-3">
-              <img alt="" src="assets/time.svg" />
-            </th>
           </tr>
         </tbody>
         <tbody className="mb-6 block"></tbody>

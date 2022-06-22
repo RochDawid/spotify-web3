@@ -10,7 +10,7 @@ export default function Home() {
     <div>
       <Head>
         <title>Spotify Web 3.0</title>
-        <link rel="icon" href="/favicon.png" />
+        <link rel="icon" href="/assets/favicon.png" />
       </Head>
       <audio
         id="audio-element"

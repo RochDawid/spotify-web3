@@ -1,13 +1,10 @@
 import { useContext } from "react";
 import { SpotifyContext } from "../context/context";
 import Image from "next/image";
-import next from "../assets/next.svg";
-import previous from "../assets/previous.svg";
-import speaker from "../assets/speaker.svg";
-import repeat from "../assets/repeat.svg";
-import shuffle from "../assets/shuffle.svg";
-import playRounded from "../assets/playRounded.svg";
-import pauseIcon from "../assets/pause.svg";
+import next from "../public/assets/next.svg";
+import previous from "../public/assets/previous.svg";
+import playRounded from "../public/assets/playRounded.svg";
+import pauseIcon from "../public/assets/pause.svg";
 
 const styles = {
   albumCoverContainer: `w-20 h-20 mr-5`,
@@ -45,7 +42,7 @@ const PlayerControls = ({songs}) => {
         <div className={styles.albumCoverContainer}>
           <Image
             src={
-              currentSong.cover ||
+              currentSong.coverUrl ||
               "https://latinomp3.co/wp-content/uploads/2022/05/Bad-Bunny-Un-Verano-Sin-Ti-2022-300x300-1-300x300.jpg?v=1651765689"
             }
             className={styles.coverPhoto}

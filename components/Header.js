@@ -1,84 +1,78 @@
 import Image from "next/image";
 import UploadButton from "./UploadButton";
 import { useWallet } from "@solana/wallet-adapter-react";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { SpotifyContext } from "../context/context";
+import Artist from "../public/assets/artist.png";
+import Album from "../public/assets/album.png";
+import Logout from "../public/assets/logout.png";
+import Avatar from "../public/assets/avatar.png";
+import Play from "../public/assets/play.svg";
 
 const styles = {
   header: "max-w-7xl m-auto p-3",
-  headerWrapper: "flex items-center justify-between",
+  headerWrapper: "flex justify-end",
   headerRight: "flex",
   profile:
-    "flex items-center bg-black rounded-full p-1 px-2 bg-opacity-50 cursor-pointer hover:bg-opacity-75",
+    "flex items-center bg-black rounded-full p-1 px-2 bg-opacity-50 cursor-pointer hover:bg-opacity-75 hover:scale-95 transition",
   profileAvatarContainer: "w-7 h-7 rounded-full mr-3 flex items-center",
   playlistTextContent: "flex mt-10",
   controlsContainer: "flex items-center mt-10",
   playButton:
-    "bg-green-500 w-16 h-16 mr-2 rounded-full flex pl-2 items-center justify-center cursor-pointer",
-  arrowButton:
-    "bg-black mr-2 w-10 h-10 flex items-center justify-center rounded-full bg-opacity-0 cursor-pointer hover:bg-opacity-25",
-  iconContainer:
-    "ml-10 bg-black bg-opacity-0 rounded-full p-1 flex cursor-pointer hover:bg-opacity-25",
+    "bg-green-500 w-16 h-16 mr-2 rounded-full flex pl-2 items-center justify-center cursor-pointer hover:scale-95 transition",
   title: "text-6xl font-bold",
 };
 
 const Header = ({ setShowUploadMusic, firstSong }) => {
   const wallet = useWallet();
   const { currentSong, playOnSelect } = useContext(SpotifyContext);
+  const [hoveringProfile, setIsHoveringProfile] = useState(false);
+
+  const profileClicked = async () => {
+    await wallet.disconnect();
+  };
 
   return (
     <div className={styles.header}>
       <div className={styles.headerWrapper}>
-        <div className="flex items-center">
-          <div className={styles.arrowButton}>
-            <Image
-              src="/assets/chevronLeft.svg"
-              width={20}
-              height={20}
-              alt="left"
-            />
-          </div>
-          <div className={styles.arrowButton}>
-            <Image
-              src="/assets/chevronRight.svg"
-              width={20}
-              height={20}
-              alt="right"
-            />
-          </div>
-        </div>
         <div className={styles.headerRight}>
-          {setShowUploadMusic && <UploadButton setShowUploadMusic={setShowUploadMusic} />}
-          <div className={styles.profile}>
+          {setShowUploadMusic && (
+            <UploadButton setShowUploadMusic={setShowUploadMusic} />
+          )}
+          <div
+            onClick={profileClicked}
+            onMouseEnter={() => setIsHoveringProfile(!hoveringProfile)}
+            onMouseLeave={() => setIsHoveringProfile(!hoveringProfile)}
+            className={styles.profile}
+          >
             <div className={styles.profileAvatarContainer}>
               <Image
-                src="/assets/avatar.jpg"
+                src={hoveringProfile ? Logout : Avatar}
                 width={50}
                 height={50}
                 alt="avatar"
                 className="rounded-full"
               />
             </div>
-            <p>{wallet.publicKey.toString().substring(0,15)}...</p>
+            <p>{wallet.publicKey.toString().substring(0, 15)}...</p>
           </div>
         </div>
       </div>
       <div className={styles.playlistTextContent}>
         <Image
-          src="https://latinomp3.co/wp-content/uploads/2022/05/Bad-Bunny-Un-Verano-Sin-Ti-2022-300x300-1-300x300.jpg?v=1651765689"
+          src={currentSong.coverUrl || Album}
           width={220}
           height={220}
           alt="song"
         />
-        <div className="flex-col h-2 justify-between ml-5">
-          <div>
-            <>Song</>
-            <div className={styles.title}>{currentSong.title || "No song is playing currently"}</div>
+        <div className="flex-col h-full justify-between ml-5">
+          <div className={styles.title}>
+            {currentSong.title || "No song is playing currently"}
           </div>
           <div className="flex items-center mt-5">
             <div className={styles.profileAvatarContainer}>
               <Image
-                src="https://yt3.ggpht.com/7tCfeCWH4arhsTM-4Rz4IxWieQbegzibeXlG-kbytAujdk5dr2K0gBb8NG0Cvk6lB1dPkjyd=s88-c-k-c0x00ffffff-no-rj"
+                src={currentSong.artistPhotoUrl || Artist}
                 width={25}
                 height={25}
                 alt="artist"
@@ -86,17 +80,19 @@ const Header = ({ setShowUploadMusic, firstSong }) => {
               />
             </div>
             <p>
-              <span className="text-bold">{currentSong.artist}</span> • 2022 • 46 songs, 3 hr 20 min
+              <span className="text-bold mt-10">
+                {currentSong.artist || "No one"}
+              </span>
             </p>
           </div>
         </div>
       </div>
       <div className={styles.controlsContainer}>
-        <div onClick={() => playOnSelect(firstSong.account)} className={styles.playButton}>
-          <Image src="/assets/play.svg" width={30} height={30} alt="play" />
-        </div>
-        <div className={styles.iconContainer}>
-          <Image src="/assets/more.svg" width={30} height={30} alt="more" />
+        <div
+          onClick={() => playOnSelect(firstSong.account)}
+          className={styles.playButton}
+        >
+          <Image src={Play} width={30} height={30} alt="play" />
         </div>
       </div>
     </div>
