@@ -85,7 +85,7 @@ pub struct CreateMusic<'info> {
         seeds = [b"music".as_ref(), randomkey.key().as_ref()],
         bump,
         payer = authority,
-        space = size_of::<MusicAccount>() + TEXT_LENGTH*2 + MUSIC_URL_LENGTH*3 + 8
+        space = size_of::<MusicAccount>() + TEXT_LENGTH*5 + 8
     )]
     pub music: Account<'info, MusicAccount>,
 
