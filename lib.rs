@@ -8,7 +8,6 @@ use std::mem::size_of;
 declare_id!("B16QWgrXog4fKyWaDsWLwRWoG8qVNj95Rqho5SvmkbNr");
 
 const TEXT_LENGTH: usize = 255;
-const MUSIC_URL_LENGTH: usize = TEXT_LENGTH;
 
 #[program]
 mod spotify_web3 {
