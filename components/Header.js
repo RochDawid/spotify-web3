@@ -3,8 +3,6 @@ import UploadButton from "./UploadButton";
 import { useWallet } from "@solana/wallet-adapter-react";
 import { useContext, useState } from "react";
 import { SpotifyContext } from "../context/context";
-import Artist from "../public/assets/artist.png";
-import Album from "../public/assets/album.png";
 import Logout from "../public/assets/logout.png";
 import Avatar from "../public/assets/avatar.png";
 import Play from "../public/assets/play.svg";
@@ -59,8 +57,8 @@ const Header = ({ setShowUploadMusic, firstSong }) => {
         </div>
       </div>
       <div className={styles.playlistTextContent}>
-        <Image
-          src={currentSong.coverUrl || Album}
+        <img
+          src={currentSong.coverUrl || "/assets/album.png"}
           width={220}
           height={220}
           alt="song"
@@ -71,8 +69,8 @@ const Header = ({ setShowUploadMusic, firstSong }) => {
           </div>
           <div className="flex items-center mt-5">
             <div className={styles.profileAvatarContainer}>
-              <Image
-                src={currentSong.artistPhotoUrl || Artist}
+              <img
+                src={currentSong.artistPhotoUrl || "/assets/artist.png"}
                 width={25}
                 height={25}
                 alt="artist"
